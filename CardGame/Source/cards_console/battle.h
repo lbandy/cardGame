@@ -13,9 +13,6 @@ private:
 	int defend;			// the cpus total power with boosters
 	int playerWin;		// how many rounds the player have won
 	int cpuWin;			// number of rounds the cpu have won
-	Deck* player;		// deck of the player
-	Deck* cpu;			// deck of the cpu
-	CpuPlayer* aiPlayer;// the AI
 
 public:
 
@@ -27,11 +24,11 @@ public:
 
 	void ResetBattle();
 
-	void StartBattle();
+	void StartBattle(Deck* player, Deck* cpu, CpuPlayer* aiPlayer);
 
 	int Fight();
 
-	Battle(CpuPlayer* ai, Deck* playerDeck, Deck* cpuDeck, int rounds);
+	Battle(int rounds);
 
 	~Battle();
 };

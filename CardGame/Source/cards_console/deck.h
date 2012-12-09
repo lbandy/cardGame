@@ -7,6 +7,7 @@ private:
 	int maxSize;		// sets the maximum size of the deck
 	int currentCard;	// sets the actual size of the deck
 	int boosters;		// sets the actual amount of boosters we have
+	int maxBoosters;	// amount of maximum boosters per battle
 	float average;		// holds the average power of our cards
 	Card* pile;			// hold the pointers to our cards
 
@@ -26,6 +27,8 @@ public:
 
 	int Booster(int change);
 
+	int MaxBoosters();
+
 	float GetAverage();
 
 	Card* SelectStrongest();
@@ -40,10 +43,8 @@ public:
 
 	int DeckSize();
 
-	Deck(int size);
+	Deck(int size, int mBoosters);
 
-	Deck();
-	
 	~Deck();
 };
 

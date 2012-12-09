@@ -185,6 +185,11 @@ int Deck::Booster(int change)
 	return boosters;
 }
 
+int Deck::MaxBoosters()
+{
+	return maxBoosters;
+}
+
 // returns the average of cards
 float Deck::GetAverage()
 {
@@ -257,7 +262,7 @@ Card* Deck::GetRandomCard(int size)
 // reset the deck to battle again
 void Deck::Reset()
 {
-	boosters = 5;
+	boosters = maxBoosters;
 	average = 0;
 	for (int i=0;i<currentCard;i++)
 	{
@@ -282,23 +287,17 @@ int Deck::DeckSize()
 	return currentCard;
 }
 
-Deck::Deck(int size)
+Deck::Deck(int size, int mBoosters)
 {
-	boosters = 5;
+	maxBoosters = mBoosters;
+	boosters = maxBoosters;
 	maxSize = size;
 	currentCard = 0;
 	average = 0;
 	pile = new Card[size];
 }
 
-Deck::Deck()
-{
-	currentCard = 0;
-	boosters = 5;
-	average = 0;
-}
-
 Deck::~Deck()
 {
-
+	delete[] pile;
 }

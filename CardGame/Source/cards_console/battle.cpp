@@ -49,12 +49,8 @@ void Battle::ResetBattle()
 }
 
 // the battle process
-void Battle::StartBattle()
+void Battle::StartBattle(Deck* player, Deck* cpu, CpuPlayer* aiPlayer)
 {
-	// select battle deck from pile
-	player->ShowHand(cardNumber);
-	ResetBattle();
-
 	int winner;
 	
 	while(round <= cardNumber)
@@ -76,14 +72,14 @@ void Battle::StartBattle()
 		else
 		{
 			// AI is selecting cards for cpu and player
-			this->SetCpuCard(aiPlayer->SelectAttack());
-			this->SetPlayerCard(aiPlayer->SelectTarget());
+			this->SetCpuCard(aiPlayer->SelectAttack(cpu));
+			this->SetPlayerCard(aiPlayer->SelectTarget(player));
 		}
 
 		// boosting the card power if possible
 		if (player->Booster(0) > 0)
 		{
-			std::cout << "Enter the amount of booster you would like to use (" << player->Booster(0) << "/5 available):\n";
+			std::cout << "Enter the amount of booster you would like to use (" << player->Booster(0) << "/" << player->MaxBoosters() << " available):\n";
 			int booster;
 			std::cin >> booster;
 			while (booster > player->Booster(0) || booster < 0)
@@ -97,7 +93,7 @@ void Battle::StartBattle()
 		}
 
 		// calculating cpu boost
-		this->SetCpuBoost(aiPlayer->SelectDefense(playerCard, cpuCard));
+		this->SetCpuBoost(aiPlayer->SelectDefense(playerCard, cpuCard, player, cpu));
 
 		// calculating the outcome of the fight
 		winner = Fight();
@@ -125,6 +121,7 @@ void Battle::StartBattle()
 		playerCard->SetState('u',true);
 		cpuCard->SetState('u',true);
 		round++;
+		std::cout << "\n";
 	}
 
 	// the final winner is
@@ -150,23 +147,12 @@ void Battle::StartBattle()
 		std::cout << "CPU wins this battle. Player loses a card with a power of " << lost->GetPower() << "!\n";
 		player->RemoveCard(*lost, true);
 	}
-
-	// reset the player attributes
-	player->Reset();
-
-	// get a new deck to the computer
-	cpu->Reset();
-	cpu->Clear();
-	cpu->GenerateDeck(1,10,cardNumber,true,true);
+	std::cout << "\n";
 }
 
-Battle::Battle(CpuPlayer* ai, Deck* playerDeck, Deck* cpuDeck, int rounds)
+Battle::Battle(int rounds)
 {
-	aiPlayer = ai;
 	cardNumber = rounds;
-	player = playerDeck;
-	cpu = cpuDeck;
-	
 	ResetBattle();
 }
 

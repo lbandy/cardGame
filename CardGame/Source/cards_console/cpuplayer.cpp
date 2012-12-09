@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 // calculate if boosters are worth using or not
-int CpuPlayer::SelectDefense(Card* attack, Card* defend)
+int CpuPlayer::SelectDefense(Card* attack, Card* defend, Deck* player, Deck* cpu)
 {
 	std::cout << "CPU is calculating boosters... (" << attack->GetPower() << " vs. " << defend->GetPower() << ")\n";
 	// if the defensive card is weaker, but we can win with up to 3 boosters, use it
@@ -19,21 +19,15 @@ int CpuPlayer::SelectDefense(Card* attack, Card* defend)
 }
 
 // select the strongest card for the cpu to attack
-Card* CpuPlayer::SelectAttack()
+Card* CpuPlayer::SelectAttack(Deck* deck)
 {
-	return cpu->SelectStrongest();
+	return deck->SelectStrongest();
 }
 
 // select the weakest card for the player to defend
-Card* CpuPlayer::SelectTarget()
+Card* CpuPlayer::SelectTarget(Deck* deck)
 {
-	return player->SelectWeakest();
-}
-
-CpuPlayer::CpuPlayer(Deck* playerDeck, Deck* cpuDeck)
-{
-	player = playerDeck;
-	cpu = cpuDeck;
+	return deck->SelectWeakest();
 }
 
 CpuPlayer::CpuPlayer()
