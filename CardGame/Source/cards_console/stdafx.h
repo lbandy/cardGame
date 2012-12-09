@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <ios> 
 
 #include "card.h"
 #include "deck.h"
