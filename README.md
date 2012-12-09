@@ -1,3 +1,20 @@
+Basic Card Game
+
+The game is played with cards, each has a number in range from 1 to 10. When the game begins, the player is given 5 different cards. This will be his deck from now on.
+
+Before each battle the player is asked to select 4 cards from the deck. These cards will form the battle deck.
+
+At the beginning of the first round the player can select a card to play, and select a card from the computers deck to play against. They can both use boosters in each round to strengthen their cards up to a maximum of 5 per battle.
+The card with the higher attack boosted wins the round, and the winner will start the next round.
+
+The one who wins more wins the battle accordingly. If the player wins he gets a random card from the computers deck. However in case of defeat, the player loses a card from the battle deck.
+
+If a tie occurs, we decide by flipping a coin...
+
+If the player gets below 4 cards loses the game, but reaches above 7 wins it.
+
+---------
+
 Kártyajáték teszt program
 
 A játékot kártyalapokkal játsszuk, melyek egyetlen értékkel rendelkeznek, ami 1 és 10 közé esik. Minden kártyából pontosan 1 db van.
