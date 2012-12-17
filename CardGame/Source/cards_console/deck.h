@@ -4,47 +4,36 @@
 class Deck
 {
 private:
-	int maxSize;		// sets the maximum size of the deck
-	int currentCard;	// sets the actual size of the deck
-	int boosters;		// sets the actual amount of boosters we have
-	int maxBoosters;	// amount of maximum boosters per battle
-	float average;		// holds the average power of our cards
-	Card* pile;			// hold the pointers to our cards
+	std::vector<Card*> pile;				// holds the pointers to our cards
+	std::vector<char> cardState;		// shows the state of our card
+	std::vector<int> displayIndex;		// holds the index of the sprite if displayed
 
 public:
 	
-	int AddCard(Card card, bool silent);
+	// Info
+	int Size(); // returns size of the deck
+	char StateByDef(int index); // returns state of the card at the given index
+	char StateByID(int index); // returns state of the card at the given display index
+	int State(int index, char state); // sets the state of the card at the given index
+	int Index(int index); // returns displayIndex
+	void Index(int index, int displayID); // sets displayIndex at the given index
+	Card* CardPointerByID(int index); // returns the Card pointer display by the given displayIndex
+	Card* CardPointerByDef(int index); // returns the Card pointer display by the given index
 
-	void RemoveCard(Card card, bool silent);
+	//GetCard
+	int GetStrongestCard();
+	int GetWeakestCard();
+	int GetRandomCard();
 
-	Card* GetCards();
-
-	int GenerateDeck(int lowest, int highest, int count, bool repeat, bool silent);
-
-	void ShowHand(int maxCards);
-
-	Card* BattleHand(int maxCards);
-
-	int Booster(int change);
-
-	int MaxBoosters();
-
-	float GetAverage();
-
-	Card* SelectStrongest();
-
-	Card* SelectWeakest();
-
-	Card* GetRandomCard(int size);
-
+	// Manage	
+	void AddCard(Card* card, char state);
+	void RemoveCard(int index);
+	void GenerateDeck(int lowest, int highest, int count, bool repeat);
 	void Reset();
-
 	void Clear();
 
-	int DeckSize();
-
-	Deck(int size, int mBoosters);
-
+	// General
+	Deck();
 	~Deck();
 };
 

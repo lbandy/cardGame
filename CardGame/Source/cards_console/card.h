@@ -5,22 +5,15 @@ class Card
 {
 private:
 	int power;
-	char state;
+	sf::Sprite sprite;
 
 public:
 
 	int GetPower();
-
-	char GetState(bool silent);
-
-	void SetState(char s, bool silent);
-
+	sf::Sprite* Sprite();
+	void Sprite(sf::Image* img);
 	Card(int p);
-	
-	Card();
-
 	~Card();
-
 };
 
 #endif

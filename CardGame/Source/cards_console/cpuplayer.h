@@ -3,20 +3,13 @@
 
 class CpuPlayer
 {
-private:
-	float playerAverage;	// the average power of the players deck
-	float cpuAverage;		// average power of computers deck
-
 public:
 
-	int SelectDefense(Card* attack, Card* defend, Deck* player, Deck* cpu);
-	
-	Card* SelectAttack(Deck* deck);
-
-	Card* SelectTarget(Deck* deck);
+	int SelectDefense(int playerCard, int cpuCard, int playerBooster, int cpuBooster); // calculate if boosters are worth using or not
+	int SelectAttack(Deck* deck);
+	int SelectTarget(Deck* deck);
 
 	CpuPlayer();
-
 	~CpuPlayer();
 };
 
