@@ -7,7 +7,8 @@
 
 void Game::Award()
 {
-	int winner = battle.GetWinner() == 3 ? CoinFlip() : battle.GetWinner();
+	roundState += 2;
+	//winner = battle.GetWinner() == 3 ? CoinFlip() : battle.GetWinner();
 
 	if (winner == 1)
 	{
@@ -21,13 +22,20 @@ void Game::Award()
 		gfx.SelectCardToAward(player.Index(card));
 		player.RemoveCard(card);
 	}
-	roundState = 12;
 }
+
 void Game::ClearBattle()
 {
 	gfx.ResetCardPositions();
-	roundState = 11;
+	roundState++;
 }
+
+void Game::EndBattle()
+{
+	winner = battle.GetWinner() == 3 ? CoinFlip() : battle.GetWinner();
+	WaitForSecond(1);
+}
+
 void Game::NextMove()
 {
 	for (int i=0;i<player.Size();i++)
@@ -44,20 +52,22 @@ void Game::NextMove()
 		}
 	}
 
-	roundState = 8;
+	roundState++;
 
 	if (battle.GetRound() == battleCardCount)
 	{
-		roundState = 9;
+		roundState ++;
 	}
 
 }
+
 void Game::PlayBattle()
 {
-	roundState = 6;
+	roundState += 2;
 	gfx.PutBoostersAway(battle.GetRound());
 	gfx.PlayBattle(player.Index(playerCard), cpu.Index(cpuCard), winner, battle.GetRound());
 }
+
 void Game::StartBattle()
 {
 	battle.ResetBattle();
@@ -96,6 +106,7 @@ void Game::StartBattle()
 		cpu.Index(i,gfx.DisplayCard(cpu.CardPointerByDef(i)->Sprite(),2,i,battleCardCount));
 	}
 }
+
 void Game::SelectCardInBattle(int displayIndex, int owner)
 {
 	if (owner == 1 && roundState != 1)
@@ -105,6 +116,8 @@ void Game::SelectCardInBattle(int displayIndex, int owner)
 			player.State(displayIndex,'a');
 
 			gfx.SelectCardToFight(displayIndex, battle.GetRound() + 1);
+
+			gfx.CanInteract(false);
 
 			roundState = (roundState == 2) ? 3 : 1;
 		}
@@ -118,10 +131,13 @@ void Game::SelectCardInBattle(int displayIndex, int owner)
 
 			gfx.SelectCardToFight(displayIndex, battle.GetRound() + 1);
 
+			gfx.CanInteract(false);
+
 			roundState = (roundState == 1) ? 3 : 2;
 		}
 	}
 }
+
 void Game::ShowBattle()
 {
 	gfx.CanInteract(false);

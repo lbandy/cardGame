@@ -4,10 +4,12 @@ int SpriteVector::GetDisplayIndex(int index)
 {
 	return vectIndex.at(index);
 }
+
 int SpriteVector::GetOwner(int index)
 {
 	return vectOwner.at(index);
 }
+
 int SpriteVector::GetPosition(int index, float &x, float &y) // using the vector index, not the displayIndex
 {
 	x = vectX.at(index);
@@ -17,6 +19,7 @@ int SpriteVector::GetPosition(int index, float &x, float &y) // using the vector
 
 	return vectSteps.at(index);
 }
+
 int SpriteVector::GetTargetPosition(int index, float &x, float &y)
 {
 	for (int i=0;i<(int)vectX.size();i++)
@@ -37,18 +40,22 @@ int SpriteVector::GetTargetPosition(int index, float &x, float &y)
 		}
 	}
 }
+
 int SpriteVector::Selected(int index)
 {
 	return vectSelected.at(index);
 }
+
 int SpriteVector::Size()
 {
 	return vectX.size();
 }
+
 sf::Sprite* SpriteVector::GetSprite(int index) // using the vector index, not the displayIndex
 {
 	return vectSprite.at(index);
 }
+
 void SpriteVector::Add(int index, sf::Sprite* spr, int owner)
 {
 	vectIndex.push_back(index);
@@ -59,6 +66,7 @@ void SpriteVector::Add(int index, sf::Sprite* spr, int owner)
 	vectOwner.push_back(owner);
 	vectSelected.push_back(0);
 }
+
 void SpriteVector::Clear()
 {
 	vectIndex.clear();
@@ -69,6 +77,7 @@ void SpriteVector::Clear()
 	vectOwner.clear();
 	vectSelected.clear();
 }
+
 void SpriteVector::SetPositionByIndex(int index, float x, float y, int speed, bool fixed)
 {
 	for (int i=0;i<(int)vectX.size();i++)
@@ -82,20 +91,24 @@ void SpriteVector::SetPositionByIndex(int index, float x, float y, int speed, bo
 		}
 	}
 }
+
 void SpriteVector::SetPositionByDef(int index, float x, float y, int speed)
 {
 	vectX.at(index) = (x - vectSprite.at(index)->GetPosition().x) / (float)speed;
 	vectY.at(index) = (y - vectSprite.at(index)->GetPosition().y) / (float)speed;
 	vectSteps.at(index) = speed;
 }
+
 void SpriteVector::SetOwner(int index, int owner)
 {
 	vectOwner.at(index) = owner;
 }
+
 void SpriteVector::Selected(int index, int change)
 {
 	vectSelected.at(index) = change;
 }
+
 void SpriteVector::PutToEnd(int i)
 {
 	vectIndex.push_back(vectIndex.at(i));
@@ -114,6 +127,7 @@ void SpriteVector::PutToEnd(int i)
 	vectOwner.erase(vectOwner.begin()+i);
 	vectSelected.erase(vectSelected.begin()+i);
 }
+
 void SpriteVector::WaitForSeconds(int index, int speed)
 {
 	for (int i=0;i<(int)vectX.size();i++)
@@ -126,10 +140,12 @@ void SpriteVector::WaitForSeconds(int index, int speed)
 		}
 	}
 }
+
 SpriteVector::SpriteVector()
 {
 
 }
+
 SpriteVector::~SpriteVector()
 {
 	SpriteVector::Clear();

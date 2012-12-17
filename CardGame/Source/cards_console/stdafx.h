@@ -24,7 +24,6 @@ class Game;
 class Card;
 
 #include "spritevector.h"
-#include "booster.h"
 #include "gfx.h"
 #include "card.h"
 #include "deck.h"

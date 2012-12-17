@@ -45,15 +45,9 @@
     <ClInclude Include="spritevector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="booster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cards_console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="card.cpp">
@@ -92,12 +86,6 @@
     <ClCompile Include="gameBattle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="booster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gfxBooster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,6 +93,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gfxGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gfxAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

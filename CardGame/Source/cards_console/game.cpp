@@ -4,9 +4,11 @@ int Game::CoinFlip()
 {
 	int winner = rand() % 2 + 1;
 //	gfx->CoinFlip(winner); // display an animation of flipping the coin. when finished, triggers next event
+	roundState++;
 
 	return winner;
 }
+
 void Game::Ready()
 {
 	if (inBattle)
@@ -32,7 +34,8 @@ void Game::Ready()
 				Game::PlayBattle();
 				break;
 			case 5:
-				//flip coin
+				gfx.FlipCoin(winner == 1 ? true : false);
+				roundState = 4;
 				break;
 			case 6:
 				Game::WaitForSecond(1);
@@ -64,13 +67,20 @@ void Game::Ready()
 				Game::ClearBattle();
 				break;
 			case 11:
-				Game::Award();
+				Game::EndBattle();
 				break;
 			case 12:
-				gfx.ClearTable();
-				roundState = 13;
+				Game::Award();
 				break;
 			case 13:
+				gfx.FlipCoin(winner == 1 ? true : false);
+				roundState = 12;
+				break;
+			case 14:
+				gfx.ClearTable();
+				roundState++;
+				break;
+			case 15:
 				Game::ShowCards();
 				break;
 			default:
@@ -91,16 +101,18 @@ void Game::Ready()
 		gfx.CanInteract(true);
 	}
 }
+
 void Game::WaitForSecond(int second)
 {
 	gfx.WaitForSecond(second);
 	roundState++;
 }
+
 Game::Game()
 {
 	// initalizing here...
 	battleCardCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"cardNumber", 4, L"./stats.ini");				// number of card a battle will be played
-	int startCardCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"startCardCount", 5, L"./stats.ini");		// how many cards would we start with
+	startCardCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"startCardCount", 5, L"./stats.ini");		// how many cards would we start with
 	boosterCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"boosters", 5, L"./stats.ini");					// how many boosters we get
 	winCardCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"winDeckSize", 8, L"./stats.ini");			// how many cards should we collect to win the game
 	loseCardCount = GetPrivateProfileInt(L"INIT_SETTINGS", L"loseDeckSize", 3, L"./stats.ini");			// if we reach this amount of cards we lose
@@ -112,16 +124,12 @@ Game::Game()
 	// random seed
 	srand((unsigned)time(NULL));
 
-	// creation of the player deck
-	player.GenerateDeck(lowestCard,highestCard,startCardCount,false);
-
-	for (int i=0;i<player.Size();i++)
-	{
-		player.CardPointerByDef(i)->Sprite((gfx.GetImage(player.CardPointerByDef(i)->GetPower())));
-	}
+	gfx.PrepareBoosters(boosterCount);
+	gfx.InMenu();
 
 	gfx.Start(1024,768,this);
 }
+
 Game::~Game()
 {
 

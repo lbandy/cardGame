@@ -42,20 +42,24 @@ int Battle::Fight(int playerCard, int cpuCard, int playerBoost, int cpuBoost)
 	}
 	else return 3;
 }
+
 int Battle::GetRound()
 {
 	return round;
 }
+
 int Battle::GetWinner()
 {
 	if (playerWin > cpuWin) return 1;
 	else if (playerWin < cpuWin) return 2;
 	else return 3;
 }
+
 bool Battle::NextStart()
 {
 	return playerStart;
 }
+
 void Battle::PlayerStartNextRound(bool start)
 {
 	playerStart = start;
@@ -66,10 +70,12 @@ void Battle::EndBattle()
 {
 	round++;
 }
+
 void Battle::PrepareBattle()
 {
 	round = -1;
 }
+
 void Battle::ResetBattle()
 {
 	round = 0;
@@ -83,6 +89,7 @@ Battle::Battle()
 	ResetBattle();
 	PrepareBattle();
 }
+
 Battle::~Battle()
 {
 

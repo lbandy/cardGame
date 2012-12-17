@@ -16,6 +16,7 @@ int GFX::PutBoostersAway(int roundCount)
 	}
 	return boosterCount;
 }
+
 void GFX::ActivateBooster(int index, int cardNumber)
 {
 	int activeBoosters = 0;
@@ -31,6 +32,7 @@ void GFX::ActivateBooster(int index, int cardNumber)
 
 	boosters->SetPositionByIndex(boosters->GetDisplayIndex(index), x, y, 60, false);
 }
+
 void GFX::BoosterFollowCard(int index, int owner, int round)
 {
 	for (int i=0;i<boosters->Size();i++)
@@ -43,10 +45,12 @@ void GFX::BoosterFollowCard(int index, int owner, int round)
 		}
 	}
 }
+
 void GFX::MoveBooster(int index, float x, float y, int speed)
 {
 	boosters->SetPositionByDef(index, x, y, speed);
 }
+
 void GFX::MoveCpuBoost(int count, int displayIndex)
 {
 	int activeBoosters = 0;
@@ -71,17 +75,19 @@ void GFX::MoveCpuBoost(int count, int displayIndex)
 	if (count != 0)	WaitForSecond(1);
 	else WaitForSecond(0.1f);
 }
+
 void GFX::PrepareBoosters(int boosterCount)
 {
 	for (int i=0;i<2;i++)
 	{
 		for (int j=0;j<boosterCount;j++)
 		{
-			sf::Sprite* sprite = new sf::Sprite(img); 
+			sf::Sprite* sprite = new sf::Sprite(stoneImg); 
 			boosters->Add(j + (i * boosterCount), sprite, i + 1);
 		}
 	}
 }
+
 void GFX::ResetBoosters(int boosterCount)
 {
 	for (int i=0;i<boosterCount*2;i++)

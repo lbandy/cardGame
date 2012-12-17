@@ -14,6 +14,7 @@
     <ProjectGuid>{E7CAF909-5E82-4DBA-8638-899F1B0411E7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>cards_console</RootNamespace>
+    <ProjectName>CardGame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -79,7 +80,6 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="booster.h" />
     <ClInclude Include="cpuplayer.h" />
     <ClInclude Include="battle.h" />
     <ClInclude Include="card.h" />
@@ -91,12 +91,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="animations.cpp" />
-    <ClCompile Include="booster.cpp" />
+    <ClCompile Include="gfxAnimations.cpp" />
     <ClCompile Include="cpuplayer.cpp" />
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="card.cpp" />
-    <ClCompile Include="cards_console.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="deckGetCard.cpp" />
     <ClCompile Include="deckInfo.cpp" />

@@ -21,6 +21,7 @@ int GFX::DisplayCard(sf::Sprite* card, int owner, int cardCount, int maxCardCoun
 
 	return index;
 }
+
 void GFX::PlayBattle(int playerIndex, int cpuIndex, int winner, int round)
 {
 	for (int i=0; i<elements->Size(); i++)
@@ -42,6 +43,7 @@ void GFX::PlayBattle(int playerIndex, int cpuIndex, int winner, int round)
 
 	selectedCardCount = 0;
 }
+
 void GFX::PutCardsAway(int playerIndex, int cpuIndex, int roundCount, int maxRoundCount)
 {
 	for (int i=0; i<elements->Size(); i++)
@@ -65,6 +67,7 @@ void GFX::PutCardsAway(int playerIndex, int cpuIndex, int roundCount, int maxRou
 		}
 	}
 }
+
 void GFX::SelectCardToAward(int index)
 {
 	for (int i=0; i<elements->Size(); i++)
@@ -79,6 +82,7 @@ void GFX::SelectCardToAward(int index)
 		}
 	}
 }
+
 void GFX::SelectCardToBattleDeck(int index, int cardCount, int maxCardCount)
 {
 	for (int i=0; i<elements->Size(); i++)
@@ -92,6 +96,7 @@ void GFX::SelectCardToBattleDeck(int index, int cardCount, int maxCardCount)
 		}
 	}
 }
+
 void GFX::SelectCardToFight(int index, int cardCount)
 {
 	for (int i=0; i<elements->Size(); i++)

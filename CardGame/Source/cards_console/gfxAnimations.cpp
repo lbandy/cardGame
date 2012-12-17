@@ -18,20 +18,24 @@ void GFX::BoosterPositions(float boosterX, float boosterY, int owner, int booste
 		x = (owner == 1 ? (resX - paddingX) : 0)  + padX + (columnCount * spacingX) + (columnCount * boosterX);
 		y = owner == 1 ? resY - (((rowCount+1) * spacingY * 2) + ((rowCount+1) * boosterY)) : ((rowCount+1) * spacingY * 2) + (rowCount * boosterY);
 }
+
 void GFX::CalculateRestingPlace(int owner, int cardCount, int maxCardCount, float cardX, float cardY, float &x, float &y)
 {
 	x = cardCount <= (maxCardCount / 2) ? (spacingX * cardCount) + ((cardCount - 1) * cardX) : resX - ((spacingX + cardX) * (cardCount - 2));
 	y = (resY / 2) - (owner == 1 ? 0 + 15 : cardY - 15) ;
 }
+
 void GFX::HoverCard(bool hovered, float cardY, int owner, float &y)
 {
 	y = owner == 1 ? resY - cardY - (hovered ? spacingY * 3 : spacingY) : (hovered ? spacingY * 3 : spacingY);
 }
+
 void GFX::SelectCard(float cardX, float cardY, int owner, float &x, float &y)
 {
 	x = (resX / 2) - (cardX / 2);
 	y = (resY / 2) - (owner == 1 ? 0 : cardY);
 }
+
 void GFX::SetPositions(bool inBattle, float cardX, float cardY, int owner, int cardCount, int maxCardCount, float &x, float &y)
 {
 	int maxCardPerRow = resX / (spacingX + cardX);

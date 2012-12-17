@@ -6,6 +6,7 @@ sf::Image* GFX::GetImage(int number)
 {
 	return &images[number-1];
 }
+
 bool GFX::IsMouseOver(sf::Sprite* sprite, int mousePosX, int mousePosY)
 {
 	sf::Vector2f spritePos = sprite->GetPosition();
@@ -20,16 +21,19 @@ bool GFX::IsMouseOver(sf::Sprite* sprite, int mousePosX, int mousePosY)
 		return false;
 	}
 }
+
 void GFX::CanInteract(bool toggle)
 {
 	canInteract = toggle;
 }
+
 void GFX::ClearDisplaybuffer()
 {
 	inBattle = false;
 	elements->Clear();
 	index = 0;
 }
+
 void GFX::ClearTable()
 {
 	for (int i=0; i<elements->Size(); i++)
@@ -42,6 +46,7 @@ void GFX::ClearTable()
 		boosters->SetPositionByDef(i, resX / 2, (boosters->GetOwner(i) == 1) ? resY + 200 : -200, 30);
 	}
 }
+
 void GFX::EndOfRound()
 {
 	activePlayerCard = -1;
@@ -52,9 +57,63 @@ void GFX::EndOfRound()
 	cardHovered = false;
 	canCpuHover = true;
 }
-void GFX::StartBattle()
+
+void GFX::FlipCoin(bool showHeads)
+{
+	coin = true;
+
+	if (showHeads) coinSprite = heads;
+	else coinSprite = tails;
+}
+
+void GFX::InEnd(bool win)
+{
+	inBattle = false;
+	inHand = false;
+	inMenu = false;
+	inEnd = true;
+	playerWin = win;
+}
+
+void GFX::InBattle()
 {
 	inBattle = true;
+	inHand = false;
+	inMenu = false;
+	inEnd = false;
+}
+
+void GFX::InHand()
+{
+	inBattle = false;
+	inHand = true;
+	inMenu = false;
+	inEnd = false;
+}
+
+void GFX::InMenu()
+{
+	inBattle = false;
+	inHand = false;
+	inMenu = true;
+	inEnd = false;
+}
+
+void GFX::SetButtonPositions()
+{
+		startButton->SetPosition((resX - startButton->GetSize().x) / 2, (resY - startButton->GetSize().y) / 2 - (howToPlayButton->GetSize().y / 2));
+		howToPlayButton->SetPosition((resX - howToPlayButton->GetSize().x) / 2, (resY - howToPlayButton->GetSize().y) / 2 + (howToPlayButton->GetSize().y / 2));
+		
+		youWin->SetPosition((resX - youWin->GetSize().x) / 2, (resY - youWin->GetSize().y) / 2);
+		youLose->SetPosition((resX - youLose->GetSize().x) / 2, (resY - youLose->GetSize().y) / 2);
+
+		heads->SetPosition(resX / 2, (resY + heads->GetSize().y) / 2);
+		tails->SetPosition(resX / 2, (resY - tails->GetSize().y) / 2);
+}
+
+void GFX::StartBattle()
+{
+	InBattle();
 
 	canInteract = true;
 	canPlayerHover = true;
@@ -66,6 +125,7 @@ void GFX::StartBattle()
 
 	index = 0;
 }
+
 void GFX::ResetCardPositions()
 {
 	for (int i=0;i<elements->Size();i++)
@@ -80,6 +140,7 @@ void GFX::ResetCardPositions()
 
 	GFX::ResizeWindow();
 }
+
 void GFX::ResizeWindow()
 {
 	GFX::CanInteract(false);
@@ -172,19 +233,13 @@ void GFX::ResizeWindow()
 
 	GFX::SwordPosition();
 }
+
 void GFX::SwordPosition()
 {
-	sword->SetPosition((resX-sword->GetSize().x)/2, (resY-sword->GetSize().y)/2);
+	sword->SetPosition((resX - sword->GetSize().x) / 2, (resY - sword->GetSize().y) / 2);
 }
+
 void GFX::WaitForSecond(float second)
 {
 	elements->SetPositionByIndex(elements->GetDisplayIndex(0), elements->GetSprite(0)->GetPosition().x, elements->GetSprite(0)->GetPosition().y, second * 60, false);
-}
-void WinGame()
-{
-
-}
-void LoseGame()
-{
-
 }

@@ -10,6 +10,7 @@ private:
 	int boosterCount;
 	int lowestCard;
 	int highestCard;
+	int startCardCount;
 
 	int winCardCount;
 	int loseCardCount;
@@ -34,7 +35,7 @@ public:
 
 	// Menu
 
-	void EndGame();	// end game funcion, not yet implemented
+	bool EndGame();	// end game funcion, not yet implemented
 	void HowToPlay();	// show how to play, not yet implemented
 	void StartGame();	
 	void SelectCardInHand(int displayIndex);	
@@ -44,6 +45,7 @@ public:
 	
 	void Award();	// decides who have won and manages adding/removing cards accordingly
 	void ClearBattle();
+	void EndBattle();
 	void NextMove();	// decides how to move on
 	void PlayBattle();
 	void StartBattle(); 
