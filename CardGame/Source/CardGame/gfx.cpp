@@ -7,19 +7,19 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 	resX = inResX;
 	resY = inResY;
 
-	sf::RenderWindow App(sf::VideoMode(resX,resY,32),"Card Game");
+	sf::RenderWindow App(sf::VideoMode(resX,resY,32), "Card Game");
 
 	App.SetFramerateLimit(60);
 
-	sf::Event event;
-	const sf::Input& input = App.GetInput();
-	sf::View view(App.GetDefaultView());
+	sf::Event			event;
+	const sf::Input&	input = App.GetInput();
+	sf::View			view(App.GetDefaultView());
 
 	SwordPosition();
 	SetButtonPositions();
 
-	bool moving = false;
-	bool lastMoved = false;
+	bool moving		= false;
+	bool lastMoved	= false;
 
 	while(App.IsOpened())
 	{
@@ -39,7 +39,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 				int mousePosY = event.MouseMove.Y;
 
 				// we need to test based on drawing order, so we can always get the top card in case of overlap
-				for (int i=(elements->Size()-1);i>=0;i--)
+				for (int i = (elements->Size()-1); i >= 0; i--)
 				{
 					if (elements->Selected(i) == 0)
 					{
@@ -49,8 +49,8 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 							// hover on
 							if((!cardHovered && activePlayerCard == -1) && GFX::IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY))
 							{
-								activePlayerCard = elements->GetDisplayIndex(i);
-								cardHovered = true;
+								activePlayerCard	= elements->GetDisplayIndex(i);
+								cardHovered			= true;
 								float y;
 								GFX::HoverCard(true, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), y);
 								elements->SetPositionByIndex(elements->GetDisplayIndex(i), elements->GetSprite(i)->GetPosition().x, y, 30, false);
@@ -58,8 +58,8 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 							// hover off
 							else if((cardHovered && activePlayerCard == elements->GetDisplayIndex(i)) && !GFX::IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY))
 							{
-								activePlayerCard = -1;
-								cardHovered = false;
+								activePlayerCard	= -1;
+								cardHovered			= false;
 								float y;
 								GFX::HoverCard(false, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), y);
 								elements->SetPositionByIndex(elements->GetDisplayIndex(i), elements->GetSprite(i)->GetPosition().x, y, 30, false);
@@ -72,8 +72,8 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 							// hover on
 							if((!cardHovered && activeCpuCard == -1) && GFX::IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY)) // if mouse is over a sprite
 							{
-								activeCpuCard = elements->GetDisplayIndex(i);
-								cardHovered = true;
+								activeCpuCard	= elements->GetDisplayIndex(i);
+								cardHovered		= true;
 								float y;
 								GFX::HoverCard(true, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), y);
 								elements->SetPositionByIndex(elements->GetDisplayIndex(i), elements->GetSprite(i)->GetPosition().x, y, 30, false);
@@ -81,8 +81,8 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 							// hover off
 							else if((cardHovered && activeCpuCard == elements->GetDisplayIndex(i)) && !GFX::IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY)) // if mouse is not over a sprite
 							{
-								activeCpuCard = -1;
-								cardHovered = false;
+								activeCpuCard	= -1;
+								cardHovered		= false;
 								float y;
 								GFX::HoverCard(false, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), y);
 								elements->SetPositionByIndex(elements->GetDisplayIndex(i), elements->GetSprite(i)->GetPosition().x, y, 30, false);
@@ -108,7 +108,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 							game->ShowBattle();
 						}
 
-						for (int i=0;i<boosters->Size();i++)
+						for (int i = 0; i < boosters->Size(); i++)
 						{
 							// if we are over a booster
 							if (boosters->GetOwner(i) == 1 && IsMouseOver(boosters->GetSprite(i), mousePosX, mousePosY) && boosters->Selected(i) == 0)
@@ -120,7 +120,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 						}
 
 						 // we need to test based on drawing order, so we can always get the top card in case of overlap
-						for (int i=(elements->Size()-1);i>=0;i--)
+						for (int i = (elements->Size()-1); i >= 0; i--)
 						{
 							// if mouse is clicked on a card
 							if(IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY))
@@ -158,7 +158,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 				// if we are in hand
 				else if (inHand)
 				{
-					for (int i=(elements->Size()-1);i>=0;i--)
+					for (int i = (elements->Size()-1); i >= 0; i--)
 					{
 						// add the card to battle deck
 						if (IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY) && elements->Selected(i) == 0)
@@ -185,7 +185,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 					int mousePosX = input.GetMouseX();
 					int mousePosY = input.GetMouseY();
 
-					for (int i=(elements->Size()-1);i>=0;i--)
+					for (int i = (elements->Size()-1); i >= 0; i--)
 					{
 						// check if we are over our card
 						if((i == activePlayerCard) && GFX::IsMouseOver(elements->GetSprite(i), mousePosX, mousePosY))
@@ -241,7 +241,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 			if (inBattle || inHand)
 			{
 				// moves the cards in motion
-				for (int i=0;i<elements->Size();i++)
+				for (int i = 0; i < elements->Size(); i++)
 				{
 					float x, y;
 
@@ -275,7 +275,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 				}
 
 				// display boosters
-				for (int i=0;i<boosters->Size();i++)
+				for (int i = 0; i < boosters->Size(); i++)
 				{
 					float x, y;
 
@@ -309,7 +309,6 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 						coinSprite->SetScaleX(1);
 						coinSprite->SetScaleY(1);
 					}
-
 				}
 			}
 
@@ -346,7 +345,7 @@ GFX::GFX()
 
 	std::stringstream buff;
 
-	for (int i=0;i<10;i++)
+	for (int i = 0; i < 10; i++)
 	{
 		buff << "gfx/" << (i+1) << ".jpg";
 		
@@ -366,7 +365,7 @@ GFX::GFX()
 
 	std::string imgNames[9] = {"gfx/stone.png", "gfx/sword.png", "gfx/background.jpg", "gfx/heads.png", "gfx/tails.png", "gfx/startButton.png", "gfx/howToPlayButton.png", "gfx/youWin.png", "gfx/youLose.png"};
 
-	for (int i=0;i<9;i++)
+	for (int i = 0; i < 9; i++)
 	{
 		buffer = assets.GetFile(imgNames[i]);
 
@@ -409,15 +408,15 @@ GFX::GFX()
 		}
 	}
 
-	sword = new sf::Sprite(swordImg);
-	table = new sf::Sprite(tableImg);
-	heads = new sf::Sprite(headsImg);
-	tails = new sf::Sprite(tailsImg);
-	startButton = new sf::Sprite(startImg);
+	sword			= new sf::Sprite(swordImg);
+	table			= new sf::Sprite(tableImg);
+	heads			= new sf::Sprite(headsImg);
+	tails			= new sf::Sprite(tailsImg);
+	startButton		= new sf::Sprite(startImg);
 	howToPlayButton = new sf::Sprite(howToPlayImg);
-	youWin = new sf::Sprite(winImg);
-	youLose = new sf::Sprite(loseImg);
-	coinSprite = heads;
+	youWin			= new sf::Sprite(winImg);
+	youLose			= new sf::Sprite(loseImg);
+	coinSprite		= heads;
 
 	heads->SetCenter(heads->GetSize().x / 2,heads->GetSize().y / 2);
 	tails->SetCenter(heads->GetSize().x / 2,heads->GetSize().y / 2);

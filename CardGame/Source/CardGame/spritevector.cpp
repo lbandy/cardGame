@@ -22,7 +22,7 @@ int SpriteVector::GetPosition(int index, float &x, float &y) // using the vector
 
 int SpriteVector::GetTargetPosition(int index, float &x, float &y)
 {
-	for (int i=0;i<(int)vectX.size();i++)
+	for (int i = 0; i < (int)vectX.size(); i++)
 	{
 		if (vectIndex.at(i) == index)
 		{
@@ -82,7 +82,7 @@ void SpriteVector::Clear()
 
 void SpriteVector::SetPositionByIndex(int index, float x, float y, int speed, bool fixed)
 {
-	for (int i=0;i<(int)vectX.size();i++)
+	for (int i = 0; i < (int)vectX.size(); i++)
 	{
 		if (vectIndex.at(i) == index)
 		{
@@ -132,7 +132,7 @@ void SpriteVector::PutToEnd(int i)
 
 void SpriteVector::WaitForSeconds(int index, int speed)
 {
-	for (int i=0;i<(int)vectX.size();i++)
+	for (int i = 0; i < (int)vectX.size(); i++)
 	{
 		if (vectIndex.at(i) == index)
 		{

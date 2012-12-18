@@ -10,7 +10,7 @@ int Deck::GetStrongestCard()
 {
 	int strongest = 0;
 	int strongestIndex;
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		// if not available to play skip
 		if (cardState.at(i) != 's') continue;
@@ -34,7 +34,7 @@ int Deck::GetWeakestCard()
 {
 	int weakest = 9999;
 	int weakestIndex;
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		if (cardState.at(i) != 's') continue;
 
@@ -52,7 +52,7 @@ int Deck::GetRandomCard()
 {
 	std::vector<int> buffer;
 
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		// skip the cards were not in battle
 		if (cardState.at(i) == 'p') continue;

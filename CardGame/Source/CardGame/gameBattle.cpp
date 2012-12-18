@@ -38,11 +38,11 @@ void Game::EndBattle()
 
 void Game::NextMove()
 {
-	for (int i=0;i<player.Size();i++)
+	for (int i = 0; i < player.Size(); i++)
 	{
 		if (player.StateByDef(i) == 'a')
 		{
-			for (int j=0;j<cpu.Size();j++)
+			for (int j = 0; j < cpu.Size(); j++)
 			{
 				if (cpu.StateByDef(j) == 'a')
 				{
@@ -80,11 +80,11 @@ void Game::StartBattle()
 
 	// displaying player deck
 	int cardCount = 0;
-	for (int i=0;i<player.Size();i++)
+	for (int i = 0; i < player.Size(); i++)
 	{
 		if (player.StateByDef(i) == 's')
 		{
-			player.Index(i,gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(),1,cardCount,battleCardCount));
+			player.Index(i, gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(), 1, cardCount,battleCardCount));
 			cardCount++;
 		}
 		else
@@ -102,8 +102,8 @@ void Game::StartBattle()
 	for (int i=0;i<cpu.Size();i++)
 	{
 		cpu.CardPointerByDef(i)->Sprite((gfx.GetImage(cpu.CardPointerByDef(i)->GetPower())));
-		cpu.State(i,'s');
-		cpu.Index(i,gfx.DisplayCard(cpu.CardPointerByDef(i)->Sprite(),2,i,battleCardCount));
+		cpu.State(i, 's');
+		cpu.Index(i, gfx.DisplayCard(cpu.CardPointerByDef(i)->Sprite(), 2, i,battleCardCount));
 	}
 }
 
@@ -144,11 +144,11 @@ void Game::ShowBattle()
 	roundState = 4;
 
 	// search for the cards playing this round
-	for (int i=0;i<player.Size();i++)
+	for (int i = 0; i < player.Size(); i++)
 	{
 		if (player.StateByDef(i) == 'a')
 		{
-			for (int j=0;j<cpu.Size();j++)
+			for (int j = 0; j < cpu.Size(); j++)
 			{
 				if (cpu.StateByDef(j) == 'a')
 				{

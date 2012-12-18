@@ -91,7 +91,6 @@
     <ClInclude Include="deck.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gfx.h" />
-    <ClInclude Include="SFML\Graphics.hpp" />
     <ClInclude Include="spritevector.h" />
     <ClInclude Include="headers.h" />
   </ItemGroup>

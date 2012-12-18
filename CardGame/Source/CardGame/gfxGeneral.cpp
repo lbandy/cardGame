@@ -9,7 +9,7 @@ sf::Image* GFX::GetImage(int number)
 
 bool GFX::IsMouseOver(sf::Sprite* sprite, int mousePosX, int mousePosY)
 {
-	sf::Vector2f spritePos = sprite->GetPosition();
+	sf::Vector2f spritePos	= sprite->GetPosition();
 	sf::Vector2f spriteSize = sprite->GetSize();
 
 	if ((mousePosX > spritePos.x && mousePosX < (spritePos.x + spriteSize.x)) && (mousePosY > spritePos.y && mousePosY < (spritePos.y + spriteSize.y)))
@@ -36,12 +36,12 @@ void GFX::ClearDisplaybuffer()
 
 void GFX::ClearTable()
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		elements->SetPositionByIndex(elements->GetDisplayIndex(i), resX / 2, (elements->GetOwner(i) == 1) ? resY + 200 : -200, 90, false);
 	}
 
-	for (int i=0; i<boosters->Size(); i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
 		boosters->SetPositionByDef(i, resX / 2, (boosters->GetOwner(i) == 1) ? resY + 200 : -200, 30);
 	}
@@ -49,54 +49,54 @@ void GFX::ClearTable()
 
 void GFX::EndOfRound()
 {
-	activePlayerCard = -1;
-	cardHovered = false;
-	canPlayerHover = true;
+	activePlayerCard	= -1;
+	cardHovered			= false;
+	canPlayerHover		= true;
 	
-	activeCpuCard = -1;
-	cardHovered = false;
-	canCpuHover = true;
+	activeCpuCard		= -1;
+	cardHovered			= false;
+	canCpuHover			= true;
 }
 
 void GFX::FlipCoin(bool showHeads)
 {
-	coin = true;
+	coin						= true;
 
-	if (showHeads) coinSprite = heads;
-	else coinSprite = tails;
+	if (showHeads) coinSprite	= heads;
+	else coinSprite				= tails;
 }
 
 void GFX::InEnd(bool win)
 {
-	inBattle = false;
-	inHand = false;
-	inMenu = false;
-	inEnd = true;
-	playerWin = win;
+	inBattle	= false;
+	inHand		= false;
+	inMenu		= false;
+	inEnd		= true;
+	playerWin	= win;
 }
 
 void GFX::InBattle()
 {
-	inBattle = true;
-	inHand = false;
-	inMenu = false;
-	inEnd = false;
+	inBattle	= true;
+	inHand		= false;
+	inMenu		= false;
+	inEnd		= false;
 }
 
 void GFX::InHand()
 {
-	inBattle = false;
-	inHand = true;
-	inMenu = false;
-	inEnd = false;
+	inBattle	= false;
+	inHand		= true;
+	inMenu		= false;
+	inEnd		= false;
 }
 
 void GFX::InMenu()
 {
-	inBattle = false;
-	inHand = false;
-	inMenu = true;
-	inEnd = false;
+	inBattle	= false;
+	inHand		= false;
+	inMenu		= true;
+	inEnd		= false;
 }
 
 void GFX::SetButtonPositions()
@@ -115,27 +115,27 @@ void GFX::StartBattle()
 {
 	InBattle();
 
-	canInteract = true;
-	canPlayerHover = true;
-	canCpuHover = true;
-	cardHovered = false;
+	canInteract			= true;
+	canPlayerHover		= true;
+	canCpuHover			= true;
+	cardHovered			= false;
 
-	activePlayerCard = -1;
-	activeCpuCard = -1;
+	activePlayerCard	= -1;
+	activeCpuCard		= -1;
 
-	index = 0;
+	index				= 0;
 }
 
 void GFX::ResetCardPositions()
 {
-	for (int i=0;i<elements->Size();i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
-		elements->Selected(i,0);
+		elements->Selected(i, 0);
 	}
 
-	for (int i=0;i<boosters->Size();i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
-		boosters->Selected(i,0);
+		boosters->Selected(i, 0);
 	}
 
 	GFX::ResizeWindow();
@@ -145,10 +145,10 @@ void GFX::ResizeWindow()
 {
 	GFX::CanInteract(false);
 
-	int playerElementCountUsed = 0;
-	int cpuElementCountUsed = 0;
+	int playerElementCountUsed	= 0;
+	int cpuElementCountUsed		= 0;
 
-	for (int i=0;i<elements->Size();i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		float x, y;
 		int owner = elements->GetOwner(i);
@@ -173,14 +173,14 @@ void GFX::ResizeWindow()
 			bool gotPair = false;
 			
 				// checks for cards already battled
-				for (int j=0;j<elements->Size();j++)
+				for (int j = 0; j < elements->Size(); j++)
 					{
 						if (elements->GetOwner(j) == owner) continue;
 
 						if (elements->Selected(i) == elements->Selected(j))
 						{	
 							int highestRoundCount = 0;
-							for (int k=0;k<elements->Size();k++)
+							for (int k = 0; k < elements->Size(); k++)
 							{
 								if (elements->Selected(k) > highestRoundCount) highestRoundCount = elements->Selected(k);
 							}
@@ -221,7 +221,7 @@ void GFX::ResizeWindow()
 	}
 
 	// handles boosters still in start position
-	for (int i=0;i<boosters->Size();i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
 		if (boosters->Selected(i) == 0)
 		{

@@ -14,7 +14,7 @@ int GFX::DisplayCard(sf::Sprite* card, int owner, int cardCount, int maxCardCoun
 
 	GFX::SetPositions(inBattle, cardX, cardY, owner, cardCount, maxCardCount, x, y);
 
-	card->SetPosition(resX / 2.0f, owner == 1 ? resY + (cardY * (2 + cardCount)) :  (cardY * -2));
+	card->SetPosition(resX / 2.0f, owner == 1 ? resY + (cardY * (2 + cardCount)) : (cardY * -2));
 
 	elements->Add(index, card, owner);
 	elements->SetPositionByIndex(index, x, y, 80 + (10 * cardCount), false);
@@ -24,7 +24,7 @@ int GFX::DisplayCard(sf::Sprite* card, int owner, int cardCount, int maxCardCoun
 
 void GFX::PlayBattle(int playerIndex, int cpuIndex, int winner, int round)
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		if (elements->GetDisplayIndex(i) == playerIndex)
 		{
@@ -46,7 +46,7 @@ void GFX::PlayBattle(int playerIndex, int cpuIndex, int winner, int round)
 
 void GFX::PutCardsAway(int playerIndex, int cpuIndex, int roundCount, int maxRoundCount)
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		if (elements->GetDisplayIndex(i) == playerIndex)
 		{
@@ -70,7 +70,7 @@ void GFX::PutCardsAway(int playerIndex, int cpuIndex, int roundCount, int maxRou
 
 void GFX::SelectCardToAward(int index)
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		if (elements->GetDisplayIndex(i) == index)
 		{
@@ -85,7 +85,7 @@ void GFX::SelectCardToAward(int index)
 
 void GFX::SelectCardToBattleDeck(int index, int cardCount, int maxCardCount)
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		if (elements->GetDisplayIndex(i) == index)
 		{
@@ -99,7 +99,7 @@ void GFX::SelectCardToBattleDeck(int index, int cardCount, int maxCardCount)
 
 void GFX::SelectCardToFight(int index, int cardCount)
 {
-	for (int i=0; i<elements->Size(); i++)
+	for (int i = 0; i < elements->Size(); i++)
 	{
 		if (elements->GetDisplayIndex(i) == index)
 		{

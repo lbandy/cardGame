@@ -4,14 +4,14 @@
 class Card
 {
 private:
-	int power;
-	sf::Sprite sprite;
+	int			power;
+	sf::Sprite	sprite;
 
 public:
 
-	int GetPower();
-	sf::Sprite* Sprite();
-	void Sprite(sf::Image* img);
+	int			GetPower();
+	sf::Sprite*	Sprite();
+	void		Sprite(sf::Image* img);
 	Card(int p);
 	~Card();
 };

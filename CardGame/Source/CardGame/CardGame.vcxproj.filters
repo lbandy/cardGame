@@ -42,9 +42,6 @@
     <ClInclude Include="headers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SFML\Graphics.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle.cpp">

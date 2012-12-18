@@ -6,7 +6,7 @@
 int GFX::PutBoostersAway(int roundCount)
 {
 	int boosterCount = 0;
-	for (int i=0;i<boosters->Size();i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
 		if (boosters->Selected(i) == -1)
 		{
@@ -20,7 +20,7 @@ int GFX::PutBoostersAway(int roundCount)
 void GFX::ActivateBooster(int index, int cardNumber)
 {
 	int activeBoosters = 0;
-	for (int i=0;i<boosters->Size();i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
 		if (boosters->Selected(i) == -1) activeBoosters++;
 	}
@@ -35,7 +35,7 @@ void GFX::ActivateBooster(int index, int cardNumber)
 
 void GFX::BoosterFollowCard(int index, int owner, int round)
 {
-	for (int i=0;i<boosters->Size();i++)
+	for (int i = 0; i < boosters->Size(); i++)
 	{
 		if (boosters->Selected(i) == round && boosters->GetOwner(i) == owner)
 		{
@@ -55,11 +55,11 @@ void GFX::MoveCpuBoost(int count, int displayIndex)
 {
 	int activeBoosters = 0;
 
-	for(int j=0;j<elements->Size();j++)
+	for(int j = 0; j < elements->Size(); j++)
 	{
 		if (elements->GetDisplayIndex(j) == displayIndex)
 		{
-			for (int i=0;i<boosters->Size();i++)
+			for (int i = 0; i < boosters->Size(); i++)
 			{
 				if (activeBoosters < count)
 				{
@@ -78,9 +78,9 @@ void GFX::MoveCpuBoost(int count, int displayIndex)
 
 void GFX::PrepareBoosters(int boosterCount)
 {
-	for (int i=0;i<2;i++)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int j=0;j<boosterCount;j++)
+		for (int j = 0; j < boosterCount; j++)
 		{
 			sf::Sprite* sprite = new sf::Sprite(stoneImg); 
 			boosters->Add(j + (i * boosterCount), sprite, i + 1);
@@ -90,7 +90,7 @@ void GFX::PrepareBoosters(int boosterCount)
 
 void GFX::ResetBoosters(int boosterCount)
 {
-	for (int i=0;i<boosterCount*2;i++)
+	for (int i = 0; i < boosterCount * 2; i++)
 	{
 		float x,y;
 

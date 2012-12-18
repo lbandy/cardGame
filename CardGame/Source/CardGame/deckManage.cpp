@@ -36,7 +36,7 @@ void Deck::GenerateDeck(int lowest, int highest, int count, bool repeat)
 	// if cards with the same number are allowed in the deck
 	if (repeat)
 	{
-		for (int i=0;i<count;i++)
+		for (int i = 0; i < count; i++)
 		{
 			// create a card randomly between the lowest and highest possibilities
 			Card* card = new Card(rand() % (highest - lowest + 1) + lowest);	
@@ -53,12 +53,12 @@ void Deck::GenerateDeck(int lowest, int highest, int count, bool repeat)
 		// create a temporary buffer for all numbers
 		std::vector<int> buffer;
 
-		for (int i=0;i<=current;i++)
+		for (int i = 0; i <= current; i++)
 		{
 			buffer.push_back(lowest + i);
 		}
 
-		for (int i=0;i<count;i++)
+		for (int i = 0; i < count; i++)
 		{
 			// pick up a random number from the remaining items
 			int selected = i < count - 1 ? rand() % current : 0;
@@ -79,7 +79,7 @@ void Deck::GenerateDeck(int lowest, int highest, int count, bool repeat)
 // reset the deck to battle again
 void Deck::Reset()
 {
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		// put back every card to pile
 		cardState.at(i) = 'p';

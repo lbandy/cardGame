@@ -4,7 +4,7 @@
 int CpuPlayer::SelectDefense(int playerCard, int cpuCard, int playerBooster, int cpuBooster)
 {
 	// if the defensive card is weaker, but we can win with up to 3 boosters, use it
-	if ((cpuCard <= playerCard) && (playerCard - cpuCard < 3) && (cpuBooster > ((playerCard - cpuCard) + 1)))
+	if ((cpuCard <= playerCard) && (playerCard - cpuCard <= 3) && (cpuBooster >= ((playerCard - cpuCard) + 1)))
 	{
 		return playerCard - cpuCard + 1;
 	}

@@ -20,7 +20,7 @@ char Deck::StateByDef(int index)
 // returns state of the card at the given display index
 char Deck::StateByID(int index)
 {
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		if (displayIndex.at(i) == index) return cardState.at(i);
 	}
@@ -31,7 +31,7 @@ char Deck::StateByID(int index)
 // sets the state of the card at the given index
 int Deck::State(int index, char state) 
 {
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		if (displayIndex.at(i) == index) cardState.at(i) = state;
 	}
@@ -60,7 +60,7 @@ Card* Deck::CardPointerByDef(int index)
 // returns the Card pointer display by the given displayIndex
 Card* Deck::CardPointerByID(int index)
 {
-	for (int i=0;i<(int)cardState.size();i++)
+	for (int i = 0; i < (int)cardState.size(); i++)
 	{
 		if (displayIndex.at(i) == index) return pile.at(i);
 	}

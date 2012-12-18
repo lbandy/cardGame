@@ -65,8 +65,8 @@ void Game::ShowCards()
 	cardsInBattleDeck = 0;
 	inBattle = false;
 
-	for (int i=0;i<player.Size();i++)
+	for (int i = 0; i < player.Size(); i++)
 	{
-		player.Index(i,gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(),1,i,player.Size()));
+		player.Index(i, gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(), 1, i, player.Size()));
 	}
 }
