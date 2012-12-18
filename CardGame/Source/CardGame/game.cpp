@@ -10,6 +10,13 @@ int Game::CoinFlip()
 
 void Game::Ready()
 {
+	if (resized)
+	{
+		gfx.ResizeWindow();
+		resized = false;
+		return;
+	}
+
 	if (inBattle)
 	{
 		if (battle.GetRound() == -1)
@@ -149,9 +156,14 @@ void Game::WaitForSecond(int second)
 	roundState++;
 }
 
+void Game::Resize()
+{
+	resized = true;
+}
+
 Game::Game()
 {
-	// initalizing here...
+	// initalising here...
 	battleCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"cardNumber", 4, L"./stats.ini");				// number of card a battle will be played
 	startCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"startCardCount", 5, L"./stats.ini");			// how many cards would we start with
 	boosterCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"boosters", 5, L"./stats.ini");				// how many boosters we get
@@ -166,6 +178,7 @@ Game::Game()
 	loseCount			= 0;
 	
 	howToPlay			= false;
+	resized				= false;
 
 	// random seed
 	srand((unsigned)time(NULL));

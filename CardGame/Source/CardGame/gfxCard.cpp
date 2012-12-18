@@ -92,7 +92,7 @@ void GFX::SelectCardToBattleDeck(int index, int cardCount, int maxCardCount)
 			float x, y;
 			GFX::SetPositions(true, elements->GetSprite(i)->GetSize().x, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), cardCount, maxCardCount, x, y);
 			elements->SetPositionByIndex(index, x, y, 60, false);
-			elements->Selected(i, cardCount);
+			elements->Selected(i, maxCardCount);
 		}
 	}
 }

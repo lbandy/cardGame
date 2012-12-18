@@ -28,7 +28,7 @@ private:
 
 	// Battle variables
 
-	bool	inBattle;
+	bool	inBattle, resized;
 	int		roundState, winner, playerCard, cpuCard;
 
 public:
@@ -57,6 +57,7 @@ public:
 	int	 CoinFlip();
 	void Ready();										// called when every animation have been completed
 	void WaitForSecond(int second);
+	void Resize();
 	Game();
 	~Game();
 

@@ -219,15 +219,17 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 				{
 					table->SetScaleX(table->GetScale().x * resX / table->GetSize().x);
 				}
-				
+
 				if (table->GetSize().y < resY)
 				{
 					table->SetScaleY(table->GetScale().y * resY / table->GetSize().y);
 				}
 
-				SetButtonPositions();
+				game->Resize();
+
+				if (canInteract) WaitForSecond(0.1f);
 				
-				ResizeWindow();
+				//ResizeWindow();
 
 				App.SetView(view = sf::View(sf::FloatRect(0,0,resX,resY)));
 			}

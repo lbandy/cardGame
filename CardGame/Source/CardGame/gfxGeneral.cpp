@@ -146,6 +146,41 @@ void GFX::ResizeWindow()
 	GFX::CanInteract(false);
 
 	int playerElementCountUsed	= 0;
+
+	if (!inBattle)
+	{
+		for (int i = 0; i < elements->Size(); i++)
+		{
+			// check how many cards the player has selected
+			if (elements->Selected(i) != 0)
+			{
+				playerElementCountUsed = elements->Selected(i);
+			}
+		}
+
+		int displayedCard = 0;
+
+		for (int i = 0; i < elements->Size(); i++)
+		{
+			// put the cards to the correct positions according to their states
+			if (elements->Selected(i) == 0)
+			{
+				float x, y;
+				GFX::SetPositions(false, elements->GetSprite(i)->GetSize().x, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), i - displayedCard, elements->Size(), x, y);
+				elements->SetPositionByIndex(elements->GetDisplayIndex(i), x, y, 60, false);
+			}
+			else
+			{
+				float x, y;
+				GFX::SetPositions(true, elements->GetSprite(i)->GetSize().x, elements->GetSprite(i)->GetSize().y, elements->GetOwner(i), displayedCard, playerElementCountUsed, x, y);
+				elements->SetPositionByIndex(elements->GetDisplayIndex(i), x, y, 60, false);
+				displayedCard++;
+			}
+		}
+		return;
+	}
+
+	playerElementCountUsed		= 0;
 	int cpuElementCountUsed		= 0;
 
 	for (int i = 0; i < elements->Size(); i++)
@@ -231,7 +266,9 @@ void GFX::ResizeWindow()
 		}
 	}
 
-	GFX::SwordPosition();
+	SetButtonPositions();
+
+	SwordPosition();
 }
 
 void GFX::SwordPosition()
