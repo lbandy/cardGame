@@ -153,13 +153,15 @@ Game::Game()
 {
 	// initalizing here...
 	battleCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"cardNumber", 4, L"./stats.ini");				// number of card a battle will be played
-	startCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"startCardCount", 5, L"./stats.ini");		// how many cards would we start with
-	boosterCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"boosters", 5, L"./stats.ini");					// how many boosters we get
+	startCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"startCardCount", 5, L"./stats.ini");			// how many cards would we start with
+	boosterCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"boosters", 5, L"./stats.ini");				// how many boosters we get
 	winCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"winDeckSize", 8, L"./stats.ini");			// how many cards should we collect to win the game
 	loseCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"loseDeckSize", 3, L"./stats.ini");			// if we reach this amount of cards we lose
-	lowestCard			= GetPrivateProfileInt(L"INIT_SETTINGS", L"lowestCard", 1, L"./stats.ini");			// what could be lowest number on the cards
-	highestCard			= GetPrivateProfileInt(L"INIT_SETTINGS", L"highestCard", 10, L"./stats.ini");			// what could be highest number on the cards
+	//lowestCard		= GetPrivateProfileInt(L"INIT_SETTINGS", L"lowestCard", 1, L"./stats.ini");				// what could be lowest number on the cards
+	//highestCard		= GetPrivateProfileInt(L"INIT_SETTINGS", L"highestCard", 10, L"./stats.ini");			// what could be highest number on the cards
 	
+	lowestCard			= 1;
+	highestCard			= 10;
 	winCount			= 0;
 	loseCount			= 0;
 	
