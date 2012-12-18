@@ -17,6 +17,8 @@ struct sFileEntry
 	long offset; /// Offset, in the DAT file where the file is
 };
 
+class cDAT;
+
 class cDAT
 {
 private :

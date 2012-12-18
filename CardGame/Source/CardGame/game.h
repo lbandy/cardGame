@@ -24,6 +24,7 @@ private:
 	// Menu variables
 
 	int		cardsInBattleDeck;
+	bool	howToPlay;
 
 	// Battle variables
 
@@ -34,8 +35,8 @@ public:
 
 	// Menu
 
-	bool EndGame();										// end game funcion, not yet implemented
-	void HowToPlay();									// show how to play, not yet implemented
+	bool EndGame();										// end game funcion
+	void HowToPlay();									// shows how to play
 	void StartGame();	
 	void SelectCardInHand(int displayIndex);	
 	void ShowCards();									// display every card in players hand and sets their display id

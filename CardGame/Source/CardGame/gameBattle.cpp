@@ -73,7 +73,6 @@ void Game::StartBattle()
 	battle.ResetBattle();
 	
 	battle.ResetBoosters(boosterCount);
-	gfx.ResetBoosters(boosterCount);
 	gfx.StartBattle();
 	
 	roundState = 0;
@@ -84,7 +83,7 @@ void Game::StartBattle()
 	{
 		if (player.StateByDef(i) == 's')
 		{
-			player.Index(i, gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(), 1, cardCount,battleCardCount));
+			player.Index(i, gfx.DisplayCard(player.CardPointerByDef(i)->Sprite(), 1, cardCount, battleCardCount));
 			cardCount++;
 		}
 		else
@@ -96,15 +95,17 @@ void Game::StartBattle()
 	cpu.Clear();
 
 	// creating computer deck
-	cpu.GenerateDeck(lowestCard,highestCard,battleCardCount,true);
+	cpu.GenerateDeck(lowestCard, highestCard, battleCardCount, true);
 
 	// displaying cpu deck
-	for (int i=0;i<cpu.Size();i++)
+	for (int i = 0; i < cpu.Size(); i++)
 	{
 		cpu.CardPointerByDef(i)->Sprite((gfx.GetImage(cpu.CardPointerByDef(i)->GetPower())));
 		cpu.State(i, 's');
-		cpu.Index(i, gfx.DisplayCard(cpu.CardPointerByDef(i)->Sprite(), 2, i,battleCardCount));
+		cpu.Index(i, gfx.DisplayCard(cpu.CardPointerByDef(i)->Sprite(), 2, i, battleCardCount));
 	}
+
+	gfx.ResetBoosters(boosterCount);
 }
 
 void Game::SelectCardInBattle(int displayIndex, int owner)
@@ -159,7 +160,7 @@ void Game::ShowBattle()
 
 					battle.CpuBooster(cpuBoost);
 
-					gfx.MoveCpuBoost(cpuBoost, cpu.Index(j));
+					gfx.MoveCpuBoost(cpuBoost, cpu.Index(j), 2);
 
 					winner = battle.Fight(player.CardPointerByDef(i)->GetPower(), cpu.CardPointerByDef(j)->GetPower(), playerBoost, cpuBoost);
 

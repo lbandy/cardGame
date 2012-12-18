@@ -23,14 +23,32 @@ bool Game::EndGame()
 
 void Game::HowToPlay()
 {
-	// show pre-defined video how to play
+	player.Clear();
+	player.GenerateDeck(lowestCard, highestCard, battleCardCount, false);
+
+	// creating sample deck
+	for (int i = 0; i < player.Size(); i++)
+	{
+		player.CardPointerByDef(i)->Sprite((gfx.GetImage(player.CardPointerByDef(i)->GetPower())));
+		player.State(i, 's');
+	}
+
+	howToPlay = true;
+
+	battle.PrepareBattle();
+	inBattle = true;
+	gfx.ClearTable();
+	gfx.CanInteract(false);
+
+	Ready();
+
 }
 
 void Game::StartGame()
 {
 	// creation of the player deck
 	player.Clear();
-	player.GenerateDeck(lowestCard,highestCard,startCardCount,false);
+	player.GenerateDeck(lowestCard, highestCard, startCardCount, false);
 
 	for (int i=0;i<player.Size();i++)
 	{

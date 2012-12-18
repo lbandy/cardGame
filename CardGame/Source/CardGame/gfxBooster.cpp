@@ -51,7 +51,7 @@ void GFX::MoveBooster(int index, float x, float y, int speed)
 	boosters->SetPositionByDef(index, x, y, speed);
 }
 
-void GFX::MoveCpuBoost(int count, int displayIndex)
+void GFX::MoveCpuBoost(int count, int displayIndex, int owner)
 {
 	int activeBoosters = 0;
 
@@ -63,7 +63,7 @@ void GFX::MoveCpuBoost(int count, int displayIndex)
 			{
 				if (activeBoosters < count)
 				{
-					if (boosters->GetOwner(i) == 2 && boosters->Selected(i) == 0)
+					if (boosters->GetOwner(i) == owner && boosters->Selected(i) == 0)
 					{
 						GFX::ActivateBooster(i, j);
 						activeBoosters++;

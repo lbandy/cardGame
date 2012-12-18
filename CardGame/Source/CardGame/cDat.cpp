@@ -183,7 +183,9 @@ long int cDAT::GetFileSize (std::string filename)
 
 void cDAT::CreateAssets()
 {
-	cDAT write_test;
+	//cDAT assets;
+	//assets.CreateAssets();
+	
 	std::vector<std::string> toto;
 
 	std::stringstream buff;
@@ -202,7 +204,9 @@ void cDAT::CreateAssets()
 		toto.push_back(imgNames[i]);
 	}
 
-	write_test.Create(toto, "assets.dat");
+	this->Create(toto, "assets.dat");
+
+	std::cout << "Building assets.dat has been finished for Card Game.\n";
 }
 	
 

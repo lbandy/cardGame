@@ -3,7 +3,6 @@
 int Game::CoinFlip()
 {
 	int winner = rand() % 2 + 1;
-//	gfx->CoinFlip(winner); // display an animation of flipping the coin. when finished, triggers next event
 	roundState++;
 
 	return winner;
@@ -16,7 +15,7 @@ void Game::Ready()
 		if (battle.GetRound() == -1)
 		{
 			gfx.ClearDisplaybuffer();
-			Game::StartBattle();
+			StartBattle();
 			gfx.CanInteract(true);
 		}
 		else if (battle.GetRound() == battleCardCount + 1)
@@ -28,28 +27,59 @@ void Game::Ready()
 			switch(roundState)
 			{
 			case 3:
+				if (howToPlay)
+				{
+					for (int i = 0; i < player.Size(); i++)
+					{
+						if (player.StateByDef(i) == 'a')
+						{
+							for (int j = 0; j < cpu.Size(); j++)
+							{
+								if (cpu.StateByDef(j) == 'a')
+								{
+									int playerBoost = ai.SelectDefense(cpu.CardPointerByDef(j)->GetPower(), player.CardPointerByDef(i)->GetPower(), battle.CpuBooster(), battle.PlayerBooster());
+									battle.PlayerBooster(playerBoost);
+
+									gfx.MoveCpuBoost(playerBoost, player.Index(i), 1);
+								}
+							}
+						}
+					}
+
+					ShowBattle();
+					break;
+				}
 				gfx.CanInteract(true);
 				break;
 			case 4:
-				Game::PlayBattle();
+				PlayBattle();
 				break;
 			case 5:
 				gfx.FlipCoin(winner == 1 ? true : false);
 				roundState = 4;
 				break;
 			case 6:
-				Game::WaitForSecond(1);
+				WaitForSecond(1);
 				break;
 			case 7:
-				Game::NextMove();
+				NextMove();
 				break;
 			case 8:
 				gfx.EndOfRound();
 
+				if (howToPlay)
+				{
+					WaitForSecond(2);
+					roundState = 0;
+					break;
+				}
+
 				if (!battle.NextStart())
 				{
-					Game::SelectCardInBattle(ai.SelectTarget(&player), 1);
-					Game::SelectCardInBattle(ai.SelectAttack(&cpu), 2);
+					WaitForSecond(2);
+
+					SelectCardInBattle(ai.SelectTarget(&player), 1);
+					SelectCardInBattle(ai.SelectAttack(&cpu), 2);
 
 					gfx.CanInteract(true);
 					roundState = 0;
@@ -61,16 +91,16 @@ void Game::Ready()
 				}
 			break;
 			case 9:
-				Game::WaitForSecond(1);
+				WaitForSecond(1);
 				break;
 			case 10:
-				Game::ClearBattle();
+				ClearBattle();
 				break;
 			case 11:
-				Game::EndBattle();
+				EndBattle();
 				break;
 			case 12:
-				Game::Award();
+				Award();
 				break;
 			case 13:
 				gfx.FlipCoin(winner == 1 ? true : false);
@@ -81,9 +111,20 @@ void Game::Ready()
 				roundState++;
 				break;
 			case 15:
-				Game::ShowCards();
+				howToPlay ? gfx.InMenu() : ShowCards();
+				howToPlay = false;
+				gfx.CanInteract(true);
 				break;
 			default:
+				if (howToPlay)
+				{
+					gfx.CanInteract(false);
+
+					SelectCardInBattle(ai.SelectTarget(&player), 1);
+					SelectCardInBattle(ai.SelectAttack(&cpu), 2);
+
+					break;
+				}
 				gfx.CanInteract(true);
 				break;
 			}
@@ -118,8 +159,11 @@ Game::Game()
 	loseCardCount		= GetPrivateProfileInt(L"INIT_SETTINGS", L"loseDeckSize", 3, L"./stats.ini");			// if we reach this amount of cards we lose
 	lowestCard			= GetPrivateProfileInt(L"INIT_SETTINGS", L"lowestCard", 1, L"./stats.ini");			// what could be lowest number on the cards
 	highestCard			= GetPrivateProfileInt(L"INIT_SETTINGS", L"highestCard", 10, L"./stats.ini");			// what could be highest number on the cards
+	
 	winCount			= 0;
 	loseCount			= 0;
+	
+	howToPlay			= false;
 
 	// random seed
 	srand((unsigned)time(NULL));

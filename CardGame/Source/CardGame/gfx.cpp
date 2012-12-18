@@ -282,6 +282,7 @@ void GFX::Start(int inResX, int inResY, Game* gameInstance)
 					if (boosters->GetPosition(i, x, y) >= 0)
 					{
 						boosters->GetSprite(i)->Move(x, y);
+						moving = true;
 					}
 
 					App.Draw(*boosters->GetSprite(i));

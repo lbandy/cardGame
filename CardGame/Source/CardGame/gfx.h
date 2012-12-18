@@ -72,7 +72,7 @@ public:
 	void ActivateBooster(int index, int cardNumber);
 	void BoosterFollowCard(int index, int owner, int round);								// sets a booster to follow a specific card
 	void MoveBooster(int index, float x, float y, int speed);
-	void MoveCpuBoost(int count, int displayIndex);
+	void MoveCpuBoost(int count, int displayIndex, int owner);
 	void PrepareBoosters(int boosterCount);
 	void ResetBoosters(int boosterCount);
 

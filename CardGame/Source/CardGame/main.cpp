@@ -8,6 +8,7 @@ int main()
 	std::cout << "When everything is set, click the Sword icon to start the actual round.\nThe card with higher attack defeates the other.\n\n";
 	std::cout << "Whoever wins, starts the next round. Who wins more rounds wins the battle.\nIn case of a Draw, a coin will be flipped.\n\n";
 	std::cout << "If you win a battle a card will be awarded. If you lose, one will be taken away.\n";
+	std::cout << "For live presentation check out the \"How to Play\" menu section!\n\n";
 	std::cout << "Good luck and have fun!\n";
 
 	Game* game = new Game();
